@@ -6,6 +6,8 @@ Aplicativo local para relacionar consumo, tipo de tarefa, modelo e resultado. In
 
 Requer Node.js 24.15+ para desenvolver. Usuários do instalador não precisam de Node.
 
+Para instalar no Windows, baixe a versão mais recente na página de [Releases](https://github.com/AislanDS2000/task-model/releases). O instalador é para Windows x64 e ainda não possui assinatura digital; confira a origem do arquivo antes de executar.
+
 ```sh
 npm ci
 npm test

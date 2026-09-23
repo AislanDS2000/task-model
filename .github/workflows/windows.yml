@@ -4,7 +4,7 @@ on:
   push:
     tags: ['v*']
 permissions:
-  contents: read
+  contents: write
 jobs:
   package:
     runs-on: windows-latest
@@ -23,3 +23,12 @@ jobs:
         with:
           name: Task-Model-Windows
           path: release/Task-Model-Setup-*.exe
+      - name: Publish versioned installer
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $version = node -p "require('./package.json').version"
+          if ($env:GITHUB_REF_NAME -ne "v$version") { throw "Tag and package version do not match" }
+          gh release create $env:GITHUB_REF_NAME 'release/Task-Model-Setup-*.exe' --verify-tag --title "Task Model $env:GITHUB_REF_NAME" --generate-notes --notes "Instalador Windows x64. Ainda não possui assinatura digital; o Windows pode exibir um aviso de segurança."
