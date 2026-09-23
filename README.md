@@ -1,12 +1,16 @@
-# Task Model — Desktop 0.2
+# Task Model — Desktop 0.3
+
+## Baixar para Windows
+
+**[⬇️ Baixar o instalador Task Model 0.3.0 (.exe)](https://github.com/AislanDS2000/task-model/releases/download/v0.3.0/Task-Model-Setup-0.3.0.exe)**
+
+Para encontrar futuras versões, abra a página de [Releases — versão mais recente](https://github.com/AislanDS2000/task-model/releases/latest) e, em **Assets**, escolha o arquivo `Task-Model-Setup-...exe`. O instalador é para Windows x64; não é necessário instalar Node.js. A versão 0.3.0 ainda não possui assinatura digital, então o Windows pode mostrar um aviso. Confira se o download veio deste repositório oficial antes de executar.
 
 Copyright © 2026 Aislan dos Santos Barbosa Cruz. Código-fonte disponível sob [MIT License com Commons Clause](LICENSE): você pode usar, estudar, modificar e compartilhar o projeto dentro desses termos, mas não vender o Task Model em si. Esta não é uma licença open source aprovada pela OSI. Veja [como contribuir](CONTRIBUTING.md).
 
 Aplicativo local para relacionar consumo, tipo de tarefa, modelo e resultado. Inclui janela compacta sempre visível, histórico local em SQLite e exportação de uma skill que consulta os resultados pessoais. Sem API de IA.
 
-Requer Node.js 24.15+ para desenvolver. Usuários do instalador não precisam de Node.
-
-Para instalar no Windows, baixe a versão mais recente na página de [Releases](https://github.com/AislanDS2000/task-model/releases). O instalador é para Windows x64 e ainda não possui assinatura digital; confira a origem do arquivo antes de executar.
+Requer Node.js 24.15+ para desenvolver.
 
 ```sh
 npm ci
@@ -14,7 +18,7 @@ npm test
 npm run desktop
 ```
 
-Gere o instalador Windows com `npm run build:exe`. Ele fica em `release/Task-Model-Setup-0.2.0.exe`. Leia [funcionamento, limites e privacidade](docs/desktop.md) antes de usar ou contribuir. O instalador ainda não tem assinatura digital.
+Gere o instalador Windows com `npm run build:exe`. Ele fica em `release/Task-Model-Setup-0.3.0.exe`. Leia [funcionamento, limites e privacidade](docs/desktop.md) antes de usar ou contribuir.
 
 ## Versão web anterior
 
