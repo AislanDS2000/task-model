@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Model Compass</title>
+  <desc id="desc">Quatro direções coloridas orbitam uma estrela de navegação.</desc>
+  <defs>
+    <linearGradient id="violet" x1="12" y1="8" x2="49" y2="53" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B7CFF"/>
+      <stop offset="1" stop-color="#5148CC"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#violet)" d="M32 3c5.3 8.4 7.1 14.3 5.5 17.7-1.1 2.3-2.9 4.1-5.5 5.3-2.6-1.2-4.4-3-5.5-5.3C24.9 17.3 26.7 11.4 32 3Z"/>
+  <path fill="#16A875" d="M3 32c8.4-5.3 14.3-7.1 17.7-5.5 2.3 1.1 4.1 2.9 5.3 5.5-1.2 2.6-3 4.4-5.3 5.5C17.3 39.1 11.4 37.3 3 32Z"/>
+  <path fill="#F4A621" d="M61 32c-8.4 5.3-14.3 7.1-17.7 5.5-2.3-1.1-4.1-2.9-5.3-5.5 1.2-2.6 3-4.4 5.3-5.5C46.7 24.9 52.6 26.7 61 32Z"/>
+  <path fill="#E24F8D" d="M32 61c-5.3-8.4-7.1-14.3-5.5-17.7 1.1-2.3 2.9-4.1 5.5-5.3 2.6 1.2 4.4 3 5.5 5.3C39.1 46.7 37.3 52.6 32 61Z"/>
+  <path fill="#fff" d="m32 20.5 3.3 8.2 8.2 3.3-8.2 3.3-3.3 8.2-3.3-8.2-8.2-3.3 8.2-3.3 3.3-8.2Z"/>
+</svg>

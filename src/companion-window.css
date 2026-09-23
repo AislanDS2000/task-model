@@ -1,0 +1,6 @@
+.companion-head{user-select:none;position:sticky;top:0;background:#f4f5fa;z-index:5;padding:8px 0}
+.companion-brand img{background:transparent;border-radius:0}
+.companion-head button,.companion-head a{-webkit-app-region:no-drag}
+.companion-signal{padding:14px 16px;background:#eeebff;border:1px solid #ddd7ff;border-radius:14px;margin-bottom:14px;font-size:12px;line-height:1.5}
+.companion-signal p{margin:6px 0;color:#555c72}.companion-signal small{color:#666b80}
+.consumption-insights{margin-bottom:28px}.consumption-insights h2{font-size:22px}
