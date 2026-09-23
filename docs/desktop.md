@@ -9,6 +9,14 @@
 
 Fechar a janela a recolhe à bandeja. O menu da bandeja oferece painel, modo compacto e Sair. O modo compacto fica acima das outras janelas e pode ser movido pela barra nativa do Windows. O diário manual anterior continua acessível pelo painel expandido.
 
+## Atualizações do aplicativo
+
+Na instalação Windows a partir da versão 0.3.0, o Task Model procura versões estáveis no [GitHub oficial](https://github.com/AislanDS2000/task-model/releases) após iniciar e novamente a cada seis horas. O menu da bandeja oferece **Verificar atualizações**. Baixar e instalar exigem confirmações separadas; escolher **Depois** não interrompe o trabalho atual. Uma versão já baixada pode ser instalada pelo mesmo menu. A prévia, o modo de desenvolvimento e o teste automatizado não verificam atualizações.
+
+Cada versão publicada precisa incluir o instalador NSIS, `latest.yml` e o `.blockmap` correspondente na mesma release. A versão 0.2.0 não contém o atualizador: sua migração para 0.3.0 requer instalar o novo executável manualmente uma vez. O banco local fica em `userData`, fora da pasta do aplicativo, e não deve ser removido pelo instalador. Testar uma atualização real entre duas versões instaladas continua obrigatório antes de anunciá-la como validada.
+
+Os instaladores atuais ainda não possuem assinatura digital. O pipeline está preparado para aceitar a configuração de assinatura posteriormente; nenhuma chave ou certificado pertence ao repositório. A assinatura do publicador e a verificação criptográfica do pacote são proteções complementares. Não informe a usuários que o aviso do Windows desaparecerá imediatamente após a primeira assinatura.
+
 ## Medição
 
 Cada pedido `event_msg/user_message` define uma etapa observada. Mudanças de modelo/esforço geram registros distintos. Deltas dos contadores acumulados de `token_count` evitam duplicação. Na primeira observação e após reset, somente `last_token_usage` é atribuído para evitar importar consumo herdado de forks.

@@ -7,7 +7,8 @@ const { openStore } = require('./store.cjs');
 const { parseFile, categories, recommendations, observations } = require('./analysis.cjs');
 const { exportSkill, installSkill } = require('./skill.cjs');
 const { parseProviderFile } = require('./providers.cjs');
-let win, tray, store, timer, busy = false, error = '', lastScan = null, fileCount = 0;
+const { createUpdater } = require('./updater.cjs');
+let win, tray, store, timer, updater, busy = false, error = '', lastScan = null, fileCount = 0;
 const seen = new Map();
 const compact = process.argv.includes('--compact');
 const smoke = process.argv.includes('--smoke-test');
@@ -78,7 +79,10 @@ else {
     win.on('close', event => { if (!app.isQuitting) { event.preventDefault(); win.hide(); } });
     const image = nativeImage.createFromPath(path.join(__dirname, '../public/brand/task-model-mark.png')).resize({ width: 24, height: 24 });
     tray = new Tray(image); tray.setToolTip('Task Model — histórico local');
-    tray.setContextMenu(Menu.buildFromTemplate([{ label: 'Janela compacta', click: () => mode(true) }, { label: 'Abrir painel', click: () => mode(false) }, { type: 'separator' }, { label: 'Sair', click: () => { app.isQuitting = true; app.quit(); } }]));
+    if (app.isPackaged && process.platform === 'win32' && !smoke && !process.argv.includes('--preview')) {
+      updater = createUpdater({ app, win, dialog, autoUpdater: require('electron-updater').autoUpdater });
+    }
+    tray.setContextMenu(Menu.buildFromTemplate([{ label: 'Janela compacta', click: () => mode(true) }, { label: 'Abrir painel', click: () => mode(false) }, ...(updater ? [{ label: 'Verificar atualizações', click: () => void updater.check(true) }] : []), { type: 'separator' }, { label: 'Sair', click: () => { app.isQuitting = true; app.quit(); } }]));
     tray.on('click', () => win.isVisible() ? win.hide() : win.show());
     ipcMain.handle('tm:snapshot', () => ({ rows: store.list(), observations: observations(store.list()), groups: recommendations(store.list()), quota: store.setting('quota'), connected: !!(store.setting('sessions') || store.setting('claudeSessions') || store.setting('cursorSessions')), paused: !!store.setting('paused'), busy, error, lastScan, fileCount, categories }));
     ipcMain.handle('tm:connect', async (_, provider = 'Codex') => {
@@ -145,7 +149,7 @@ else {
         } catch (err) { console.error(err); app.isQuitting = true; app.exit(1); }
       });
     }
-    mode(compact); if (!smoke) { void scan(); timer = setInterval(scan, 15000); }
+    mode(compact); if (!smoke) { void scan(); timer = setInterval(scan, 15000); updater?.start(); }
   }).catch(err => { dialog.showErrorBox('Task Model', `Não foi possível abrir o banco local: ${err.message}`); app.quit(); });
-  app.on('before-quit', () => { app.isQuitting = true; clearInterval(timer); });
+  app.on('before-quit', () => { app.isQuitting = true; clearInterval(timer); updater?.stop(); });
 }
